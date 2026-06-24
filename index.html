@@ -1,121 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SOEPOS</title>
-
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      overflow: hidden;
-      background-image: url(./wallpaper.jpg);
-      background-size: cover;
-      background-position: center;
-      font-family: sans-serif;
-    }
-
-    #top {
-      border: solid;
-      backdrop-filter: blur(10px);
-      border-radius: 10px;
-      background-color: rgba(0,0,0,0.65);
-      color: beige;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 12px;
-    }
-
-    .window {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 420px;
-      background: beige;
-      border: solid;
-      border-radius: 16px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-      user-select: none;
-    }
-
-    .window-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 8px;
-      cursor: grab;
-    }
-
-    .window-header:active {
-      cursor: grabbing;
-    }
-
-    .close-btn {
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background: #EC6B5E;
-      border: 1px solid rgba(0,0,0,0.25);
-      cursor: pointer;
-    }
-
-    .content {
-      padding: 16px;
-      text-align: center;
-    }
-
-    .maximized {
-      top: 40px !important;
-      left: 0 !important;
-      transform: none !important;
-      width: 100% !important;
-      height: calc(100% - 40px);
-      border-radius: 0 !important;
-    }
-    .btn {
-      width: 14px;
-      height: 14px;
-      border-radius: 3px;
-      background: #4C8BF5;
-      border: 1px solid rgba(0,0,0,0.25);
-      cursor: pointer;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Soep OS</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-  <div id="top">
-    <p>SOEPOS</p>
-    <p id="TimeElement">6/23/2026 20:25</p>
+  <div id="topbar">
+    <div class="brand">SOEP OS</div>
+    <div id="clock">00:00:00</div>
   </div>
 
-  <div id="welcome" class="window">
-
-    <div class="window-header" id="dragBar">
-      <span>Welcome</span>
-
-      <div style="display: flex; gap: 8px; align-items: center;">
-        <div id="fullscreenBtn" class="btn"></div>
-        <div id="closeBtn" class="close-btn"></div>
-      </div>
-    </div>
-
-    <div class="content">
-      <img style="width: 200px; height: 200px; border-radius: 50%;" 
-           src="https://avatars.githubusercontent.com/u/139007040?v=4" />
-
-      <h1>Welcome to SoepOS</h1>
-      <p>A browser-based OS experiment</p>
-      <a href="https://github.com/poepoepipi/">GitHub</a>
-    </div>
-
+  <div id="desktop">
+    <button class="desktop-icon" data-open="welcomeWindow">Welcome</button>
+    <button class="desktop-icon" data-open="calculatorWindow">Calculator</button>
+    <button class="desktop-icon" data-open="projectsWindow">Projects</button>
+    <button class="desktop-icon" data-open="contactWindow">Contact</button>
   </div>
 
+  <div class="window" id="welcomeWindow">
+    <div class="window-header">
+      <div class="window-title">Welcome</div>
+      <button class="close-btn">x</button>
+    </div>
+    <div class="window-content">
+      <h1>Welcome to Soep OS</h1>
+      <p>This is my portfolio webOS.</p>
+      <p>I made it for stardance.</p>
+      <p>Use the icons on the desktop to open apps.</p>
+    </div>
+  </div>
+
+  <div class="window" id="calculatorWindow">
+    <div class="window-header">
+      <div class="window-title">Calculator</div>
+      <button class="close-btn">x</button>
+    </div>
+    <div class="window-content">
+      <input id="calcInput" type="text" placeholder="Type something like 2+2">
+      <button id="calcButton">Calculate</button>
+      <div id="calcResult">Result will appear here.</div>
+    </div>
+  </div>
+
+  <div class="window" id="projectsWindow">
+    <div class="window-header">
+      <div class="window-title">Projects</div>
+      <button class="close-btn">x</button>
+    </div>
+    <div class="window-content">
+      <h2>My Projects</h2>
+      <ul>
+        <li>Slack bot (soepbot)</li>
+        <li>Browser-based operating system</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="window" id="contactWindow">
+    <div class="window-header">
+      <div class="window-title">Contact</div>
+      <button class="close-btn">x</button>
+    </div>
+    <div class="window-content">
+      <h2>Contact Me</h2>
+      <p>GitHub: https://github.com/poepoepipi</p>
+    </div>
+  </div>
   <script src="script.js"></script>
-
 </body>
 </html>

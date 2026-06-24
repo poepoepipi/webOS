@@ -1,118 +1,86 @@
-function UpdateTime() {
-  const timeText = document.querySelector("#TimeElement");
-  if (timeText) {
-    timeText.innerHTML = new Date().toLocaleString();
-  }
-}
-setInterval(UpdateTime, 1000);
+const topbarClock = document.getElementById("clock");
+const desktopIcons = document.querySelectorAll(".desktop-icon");
+const windows = document.querySelectorAll(".window");
+let topZ = 1;
 
-const welcomeScreen = document.querySelector("#welcome");
-const welcomeScreenClose = document.querySelector("#welcomeclose");
-const welcomeScreenOpen = document.querySelector("#welcomeopen");
-
-function closeWindow(el) {
-  el.style.display = "none";
+function updateClock() {
+  const now = new Date();
+  topbarClock.textContent = now.toLocaleTimeString();
 }
 
-function openWindow(el) {
-  el.style.display = "block";
+setInterval(updateClock, 1000);
+updateClock();
+
+function bringToFront(win) {
+  topZ += 1;
+  win.style.zIndex = topZ;
 }
 
-if (welcomeScreenClose) {
-  welcomeScreenClose.addEventListener("click", () => {
-    closeWindow(welcomeScreen);
+function openWindow(id) {
+  const win = document.getElementById(id);
+  if (!win) return;
+  win.style.display = "block";
+  bringToFront(win);
+}
+
+function closeWindow(win) {
+  win.style.display = "none";
+}
+
+desktopIcons.forEach(icon => {
+  icon.addEventListener("click", () => {
+    openWindow(icon.dataset.open);
   });
-}
+});
 
-if (welcomeScreenOpen) {
-  welcomeScreenOpen.addEventListener("click", () => {
-    openWindow(welcomeScreen);
+windows.forEach(win => {
+  const header = win.querySelector(".window-header");
+  const closeBtn = win.querySelector(".close-btn");
+
+  bringToFront(win);
+
+  closeBtn.addEventListener("click", () => {
+    closeWindow(win);
   });
-}
 
-function dragElement(win, handle) {
+  win.addEventListener("mousedown", () => {
+    bringToFront(win);
+  });
+
+  let isDragging = false;
   let offsetX = 0;
   let offsetY = 0;
-  let isDragging = false;
 
-  handle.addEventListener("mousedown", (e) => {
+  header.addEventListener("mousedown", (e) => {
     isDragging = true;
+    bringToFront(win);
 
     const rect = win.getBoundingClientRect();
     offsetX = e.clientX - rect.left;
     offsetY = e.clientY - rect.top;
-
-    win.classList.remove("maximized");
   });
 
   document.addEventListener("mousemove", (e) => {
     if (!isDragging) return;
-
-    win.style.left = `${e.clientX - offsetX}px`;
-    win.style.top = `${e.clientY - offsetY}px`;
-    win.style.transform = "none";
+    win.style.left = (e.clientX - offsetX) + "px";
+    win.style.top = (e.clientY - offsetY) + "px";
   });
 
   document.addEventListener("mouseup", () => {
     isDragging = false;
   });
-}
+});
 
-const win = document.getElementById("welcome");
-const bar = document.getElementById("dragBar");
-const closeBtn = document.getElementById("closeBtn");
+const calcInput = document.getElementById("calcInput");
+const calcButton = document.getElementById("calcButton");
+const calcResult = document.getElementById("calcResult");
 
-if (win && bar) {
-  dragElement(win, bar);
-}
-
-if (closeBtn && win) {
-  closeBtn.addEventListener("click", () => {
-    win.style.display = "none";
-  });
-}
-
-if (bar && win) {
-  bar.addEventListener("dblclick", () => {
-    win.classList.toggle("maximized");
-  });
-}
-
-const fullscreenBtn = document.getElementById("fullscreenBtn");
-const win = document.getElementById("welcome");
-
-let isMaximized = false;
-let prevState = { top: 0, left: 0, width: 0, height: 0, transform: "" };
-
-if (fullscreenBtn) {
-  fullscreenBtn.addEventListener("click", () => {
-
-    if (!isMaximized) {
-      // save current position
-      const rect = win.getBoundingClientRect();
-      prevState = {
-        top: win.style.top,
-        left: win.style.left,
-        width: win.style.width,
-        height: win.style.height,
-        transform: win.style.transform
-      };
-
-      // maximize
-      win.classList.add("maximized");
-      isMaximized = true;
-
-    } else {
-      // restore
-      win.classList.remove("maximized");
-
-      win.style.top = prevState.top;
-      win.style.left = prevState.left;
-      win.style.width = prevState.width;
-      win.style.height = prevState.height;
-      win.style.transform = prevState.transform;
-
-      isMaximized = false;
-    }
-  });
-}
+calcButton.addEventListener("click", () => {
+  try {
+    const value = calcInput.value;
+    const result = eval(value);
+    calcResult.textContent = "Result: " + result;
+  } catch (error) {
+    calcResult.textContent = "Invalid expression.";
+  }
+});
