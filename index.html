@@ -1,21 +1,121 @@
 <!DOCTYPE html>
-<html>
-  <body style="background-image: url(./wallpaper.jpg); background-size: cover; height: 100vh;">
-    <div style="border: solid; backdrop-filter: blur(10px); background-color: rgba(0, 0, 0, 0.65); color: beige; display: flex; justify-content: space-between">
-        <p style="margin-left: 10px">
-            SOEPOS
-        </p> 
-        <p id="TimeElement" style="position: relative; right: 47%;">
-            6/23/2026 20:25
-        </p>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SOEPOS</title>
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      background-image: url(./wallpaper.jpg);
+      background-size: cover;
+      background-position: center;
+      font-family: sans-serif;
+    }
+
+    #top {
+      border: solid;
+      backdrop-filter: blur(10px);
+      border-radius: 10px;
+      background-color: rgba(0,0,0,0.65);
+      color: beige;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 12px;
+    }
+
+    .window {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 420px;
+      background: beige;
+      border: solid;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      user-select: none;
+    }
+
+    .window-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px;
+      cursor: grab;
+    }
+
+    .window-header:active {
+      cursor: grabbing;
+    }
+
+    .close-btn {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #EC6B5E;
+      border: 1px solid rgba(0,0,0,0.25);
+      cursor: pointer;
+    }
+
+    .content {
+      padding: 16px;
+      text-align: center;
+    }
+
+    .maximized {
+      top: 40px !important;
+      left: 0 !important;
+      transform: none !important;
+      width: 100% !important;
+      height: calc(100% - 40px);
+      border-radius: 0 !important;
+    }
+    .btn {
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+      background: #4C8BF5;
+      border: 1px solid rgba(0,0,0,0.25);
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="top">
+    <p>SOEPOS</p>
+    <p id="TimeElement">6/23/2026 20:25</p>
+  </div>
+
+  <div id="welcome" class="window">
+
+    <div class="window-header" id="dragBar">
+      <span>Welcome</span>
+
+      <div style="display: flex; gap: 8px; align-items: center;">
+        <div id="fullscreenBtn" class="btn"></div>
+        <div id="closeBtn" class="close-btn"></div>
+      </div>
     </div>
-    <div id="welcome" style="border: solid; width: fit-content; border-radius: 16px; padding: 16px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: beige;">
-      <img style="width: 300px; height: 300px; object-fit: cover; border-radius: 180px;" src="https://avatars.githubusercontent.com/u/139007040?v=4" />
-      <h1> Welcome to my SoepOS</h1>
-      <h3>This is a very cool browser-based OS where you can learn about me</h3>
-      <p>(Still in the making)</p> 
+
+    <div class="content">
+      <img style="width: 200px; height: 200px; border-radius: 50%;" 
+           src="https://avatars.githubusercontent.com/u/139007040?v=4" />
+
+      <h1>Welcome to SoepOS</h1>
+      <p>A browser-based OS experiment</p>
       <a href="https://github.com/poepoepipi/">GitHub</a>
     </div>
-    <script src="script.js"></script>
-  </body>
+
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
 </html>
