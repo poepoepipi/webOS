@@ -1,86 +1,111 @@
-const topbarClock = document.getElementById("clock");
-const desktopIcons = document.querySelectorAll(".desktop-icon");
-const windows = document.querySelectorAll(".window");
-let topZ = 1;
+const clock = document.getElementById('clock');
 
-function updateClock() {
-  const now = new Date();
-  topbarClock.textContent = now.toLocaleTimeString();
-}
+setInterval(() => {
+    clock.textContent = new Date().toLocaleTimeString();
+}, 1000);
 
-setInterval(updateClock, 1000);
-updateClock();
+let z = 1;
 
-function bringToFront(win) {
-  topZ += 1;
-  win.style.zIndex = topZ;
-}
-
-function openWindow(id) {
-  const win = document.getElementById(id);
-  if (!win) return;
-  win.style.display = "block";
-  bringToFront(win);
-}
-
-function closeWindow(win) {
-  win.style.display = "none";
-}
-
-desktopIcons.forEach(icon => {
-  icon.addEventListener("click", () => {
-    openWindow(icon.dataset.open);
-  });
+document.querySelectorAll('.task-btn').forEach(button => {
+    button.onclick = () => {
+        let windowElement = document.getElementById(button.dataset.open);
+        windowElement.style.display = 'block';
+        windowElement.style.zIndex = ++z;
+    };
 });
 
-windows.forEach(win => {
-  const header = win.querySelector(".window-header");
-  const closeBtn = win.querySelector(".close-btn");
+document.querySelectorAll('.window').forEach(win => {
+    let header = win.querySelector('.window-header');
 
-  bringToFront(win);
+    win.querySelector('.close-btn').onclick = () => {
+        win.style.display = 'none';
+    };
 
-  closeBtn.addEventListener("click", () => {
-    closeWindow(win);
-  });
+    let dragging = false;
+    let offsetX = 0;
+    let offsetY = 0;
 
-  win.addEventListener("mousedown", () => {
-    bringToFront(win);
-  });
+    header.onmousedown = e => {
+        dragging = true;
+        offsetX = e.clientX - win.offsetLeft;
+        offsetY = e.clientY - win.offsetTop;
+        win.style.zIndex = ++z;
+    };
 
-  let isDragging = false;
-  let offsetX = 0;
-  let offsetY = 0;
+    document.addEventListener('mousemove', e => {
+        if (!dragging) return;
 
-  header.addEventListener("mousedown", (e) => {
-    isDragging = true;
-    bringToFront(win);
+        win.style.left = e.clientX - offsetX + 'px';
+        win.style.top = e.clientY - offsetY + 'px';
+    });
 
-    const rect = win.getBoundingClientRect();
-    offsetX = e.clientX - rect.left;
-    offsetY = e.clientY - rect.top;
-  });
-
-  document.addEventListener("mousemove", (e) => {
-    if (!isDragging) return;
-    win.style.left = (e.clientX - offsetX) + "px";
-    win.style.top = (e.clientY - offsetY) + "px";
-  });
-
-  document.addEventListener("mouseup", () => {
-    isDragging = false;
-  });
+    document.addEventListener('mouseup', () => {
+        dragging = false;
+    });
 });
 
-const calcInput = document.getElementById("calcInput");
-const calcButton = document.getElementById("calcButton");
-const calcResult = document.getElementById("calcResult");
+const disp = document.getElementById('calcDisplay');
 
-calcButton.addEventListener("click", () => {
-  try {
-    const value = calcInput.value;
-    const result = eval(value);
-    calcResult.textContent = "Result: " + result;
-  } catch (error) {
-    calcResult.textContent = "Invalid expression.";
-  }
+document.querySelectorAll('.calc-grid button').forEach(button => {
+    button.onclick = () => {
+        let value = button.textContent;
+
+        if (value === '=') {
+            try {
+                disp.value = eval(disp.value);
+            } catch (e) {
+                disp.value = 'Error';
+            }
+        } else if (value === 'C') {
+            disp.value = '';
+        } else {
+            disp.value += value;
+        }
+    };
+});
+
+document.addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+        try {
+            disp.value = eval(disp.value);
+        } catch (err) {
+            disp.value = 'Error';
+        }
+    }
+
+    if (e.key === 'Escape') {
+        disp.value = '';
+    }
+});
+
+const details = {
+    slack: `
+        <button class="back">Back</button>
+        <h2>Slack Bot</h2>
+        <p>A simple Slack Bot I made for Stardance.</p>
+    `,
+    os: `
+        <button class="back">Back</button>
+        <h2>SOEP OS</h2>
+        <p>A browser operating system to learn about me.</p>
+    `
+};
+
+const projectHome = document.getElementById('projectHome');
+const projectDetail = document.getElementById('projectDetail');
+
+document.querySelectorAll('.project-link').forEach(link => {
+    link.onclick = e => {
+        e.preventDefault();
+
+        projectHome.style.display = 'none';
+        projectDetail.style.display = 'block';
+
+        projectDetail.innerHTML = details[link.dataset.project];
+
+        projectDetail.querySelector('.back').onclick = () => {
+            projectDetail.style.display = 'none';
+            projectHome.style.display = 'block';
+        };
+    };
 });
