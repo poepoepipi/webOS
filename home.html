@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>SOEP OS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="topbar">
+        <div>SOEP OS</div>
+        <div id="clock"></div>
+    </div>
+
+    <div id="taskbar">
+        <div id="appbar">
+            <button class="task-btn" data-open="welcomeWindow">👋</button>
+            <button class="task-btn" data-open="calculatorWindow">🧮</button>
+            <button class="task-btn" data-open="projectsWindow">🌐</button>
+            <button class="task-btn" data-open="contactWindow">📨</button>
+        </div>
+    </div>
+
+    <div class="window" id="welcomeWindow">
+        <div class="window-header">
+            <span>Welcome</span>
+            <button class="close-btn">x</button>
+        </div>
+        <div class="window-content">
+            <img class="profile" src="https://avatars.githubusercontent.com/u/139007040?v=4">
+            <h2>Welcome to Soep OS</h2>
+            <p>This is my portfolio webOS.</p>
+            <p>Go to the projects browser to see everything (🌐)</p>
+            <p>Links:</p>
+            GitHub: <a href="https://github.com/poepoepipi" target="_blank">poepoepipi</a><br>
+            Hackatime: <a href="https://hackatime.hackclub.com/@soep" target="_blank">soep</a><br>
+            Stardance: <a href="https://stardance.hackclub.com/@SOEP" target="_blank">SOEP</a>
+        </div>
+    </div>
+
+    <div class="window" id="calculatorWindow">
+        <div class="window-header">
+            <span>Calculator</span>
+            <button class="close-btn">x</button>
+        </div>
+        <div class="window-content">
+            <input id="calcDisplay" readonly>
+
+            <div class="calc-grid">
+                <button>7</button>
+                <button>8</button>
+                <button>9</button>
+                <button>/</button>
+
+                <button>4</button>
+                <button>5</button>
+                <button>6</button>
+                <button>*</button>
+
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>-</button>
+
+                <button>0</button>
+                <button>.</button>
+                <button>=</button>
+                <button>+</button>
+
+                <button>C</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="window" id="projectsWindow">
+        <div class="window-header">
+            <span>Projects Browser</span>
+            <button class="close-btn">x</button>
+        </div>
+
+        <div class="window-content">
+            <div class="browser-bar">
+                results for: 'Projects'
+            </div>
+
+            <div id="projectHome">
+                <div>
+                    <a href="#" class="project-link" data-project="os">
+                        SOEP OS
+                    </a>
+                    <p>A browser operating system to learn about me.</p>
+                </div>
+                <div>
+                    <a href="#" class="project-link" data-project="slack">
+                        Slack Bot
+                    </a>
+                    <p>A simple Slack Bot I made for Stardance.</p>
+                </div>
+            </div>
+
+            <div id="projectDetail" style="display:none"></div>
+        </div>
+    </div>
+
+    <div class="window" id="contactWindow">
+        <div class="window-header">
+            <span>Contact</span>
+            <button class="close-btn">x</button>
+        </div>
+
+        <div class="window-content">
+            GitHub: <a href="https://github.com/poepoepipi" target="_blank">poepoepipi</a><br>
+            Hackatime: <a href="https://hackatime.hackclub.com/@soep" target="_blank">soep</a><br>
+            Stardance: <a href="https://stardance.hackclub.com/@SOEP" target="_blank">SOEP</a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
