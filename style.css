@@ -152,7 +152,7 @@ body {
     color: #00ff00;
     font-family: Consolas, monospace;
 
-    height: calc(100% - 40px); /* Fill the window below the title bar */
+    height: calc(100% - 40px);
     overflow-y: auto;
 
     padding: 10px;
