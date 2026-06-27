@@ -109,3 +109,107 @@ document.querySelectorAll('.project-link').forEach(link => {
         };
     };
 });
+
+const terminal = document.getElementById("terminal");
+
+function print(text){
+    const div=document.createElement("div");
+    div.innerHTML=text;
+    terminal.appendChild(div);
+}
+
+function scrollTerminal() {
+    const container = document.querySelector(".terminal-content");
+    container.scrollTop = container.scrollHeight;
+}
+
+function prompt(){
+
+    const line=document.createElement("div");
+    line.className="prompt";
+
+    line.innerHTML="soep@website:~$ ";
+
+    const input=document.createElement("input");
+    line.appendChild(input);
+
+    terminal.appendChild(line);
+
+    input.focus();
+
+    input.addEventListener("keydown",e=>{
+
+        if(e.key!="Enter") return;
+
+        const cmd=input.value.trim().toLowerCase();
+
+        input.disabled=true;
+
+        switch(cmd){
+
+            case "help":
+
+                print(`Available commands:
+help   - Show this menu
+exit  - Go back to the CLI
+clear  - Clear the terminal
+neofetch - does the cool thingy
+about - info about me`);
+
+            break;
+
+            case "about":
+
+                print(`About Me
+
+        Hi! I'm SOEP/poepoepipi.
+        I'm a developer who enjoys building websites,
+        electronics projects, servers, and other fun things.`);
+
+            break;
+
+            case "neofetch":
+
+                print(`<pre>
+              ███████╗ ██████╗ ███████╗██████╗       SOEP@website
+              ██╔════╝██╔═══██╗██╔════╝██╔══██╗      -------------
+              ███████╗██║   ██║█████╗  ██████╔╝      OS: SOEPOS 
+              ╚════██║██║   ██║██╔══╝  ██╔═══╝       Host: Personal Website
+              ███████║╚██████╔╝███████╗██║           Shell: website-terminal 
+              ╚══════╝ ╚═════╝ ╚══════╝╚═╝           Uptime: Since you opened this page
+                                                     Language: HTML / CSS / JavaScript
+                                                     Status: Building cool stuff
+</pre>`);
+            scrollTerminal();
+            break;
+
+            case "clear":
+
+                terminal.innerHTML="";
+                prompt();
+                return;
+
+            case "exit":
+                const output = document.createElement("div");
+                output.textContent = "Loading...";
+                terminal.appendChild(output);
+
+                setTimeout(() => {
+                    window.location.href = "index.html";
+                }, 500);
+
+                return;
+
+            default:
+
+                if(cmd!="")
+                    print(`Unknown command: ${cmd}`);
+
+        }
+
+        prompt();
+
+    });
+
+}
+prompt();

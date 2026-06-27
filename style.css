@@ -61,9 +61,15 @@ body {
     position: absolute;
     top: 80px;
     left: 80px;
-    width: 500px;
+    width: 600px;
+    height: 350px;
+
     background: #92d0ff;
     border: 2px solid #000;
+
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 .window-header {
@@ -72,10 +78,16 @@ body {
     display: flex;
     justify-content: space-between;
     cursor: move;
+    flex-shrink: 0;
 }
 
 .window-content {
     padding: 10px;
+
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    scrollbar-width: thin;
 }
 
 .profile {
@@ -107,4 +119,46 @@ body {
     background: #eee;
     padding: 8px;
     margin-bottom: 10px;
+}
+
+.terminal-content {
+    background: #000;
+    color: #00ff00;
+    font-family: Consolas, monospace;
+    overflow-y: auto;
+    height: 100%;
+    padding: 10px;
+}
+
+#terminal {
+    white-space: pre-wrap;
+}
+
+#terminal .prompt {
+    display: flex;
+}
+
+#terminal input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #00ff00;
+    font: inherit;
+    flex: 1;
+}
+
+.window-content.terminal-content {
+    background: #000;
+    color: #00ff00;
+    font-family: Consolas, monospace;
+
+    height: calc(100% - 40px); /* Fill the window below the title bar */
+    overflow-y: auto;
+
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+#terminal {
+    white-space: pre-wrap;
 }
