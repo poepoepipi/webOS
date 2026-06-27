@@ -83,11 +83,13 @@ const details = {
         <button class="back">Back</button>
         <h2>Slack Bot</h2>
         <p>A simple Slack Bot I made for Stardance.</p>
+        <a href="https://github.com/poepoepipi/SOEPBot" target="_blank" rel="noopener noreferrer">Visit the GitHub</a>
     `,
     os: `
         <button class="back">Back</button>
         <h2>SOEP OS</h2>
         <p>A browser operating system to learn about me.</p>
+        <a href="https://github.com/poepoepipi/webOS" target="_blank" rel="noopener noreferrer">Visit the GitHub</a>
     `
 };
 
