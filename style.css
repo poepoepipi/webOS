@@ -4,7 +4,7 @@ body {
     height: 100vh;
     overflow: hidden;
 
-    background-image: url("wallpaper.jpg");
+    background-image: url("media/wallpaper.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
