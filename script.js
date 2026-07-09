@@ -156,7 +156,9 @@ help   - Show this menu
 exit  - Go back to the CLI
 clear  - Clear the terminal
 neofetch - does the cool thingy
-about - info about me`);
+about - info about me
+pwd - Print the current directory
+ls - List files/folders in the current directory`);
 
             break;
 
@@ -201,6 +203,27 @@ about - info about me`);
                 }, 500);
 
                 return;
+
+
+                case "pwd":
+
+                print(`/home/portfolio`);
+
+                case "ls":
+
+                print(`calculator.sh  browser.sh  about.sh  terminal.sh  links.sh  secret`);
+
+                case "cd secret":
+
+                print(`cd: /home/portfolio/secret: Permission denied`);
+
+                case "sudo cd secret":
+
+                print(`nice try (;`);
+
+            break;
+
+            
 
             default:
 
