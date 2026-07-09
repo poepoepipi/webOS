@@ -133,25 +133,25 @@ ls - List files/folders in the current directory`;
             terminal.appendChild(output);
         }
 
-        if (command === "pwd") {
+        else if (command === "pwd") {
             const output = document.createElement("div");
             output.innerHTML = `/home/portfolio`;
             terminal.appendChild(output);
         }
 
-        if (command === "ls") {
+        else if (command === "ls") {
             const output = document.createElement("div");
             output.innerHTML = `calculator.sh  browser.sh  about.sh  terminal.sh  links.sh  secret`;
             terminal.appendChild(output);
         }
 
-        if (command === "cd secret") {
+        else if (command === "cd secret") {
             const output = document.createElement("div");
             output.innerHTML = `cd: /home/portfolio/secret: Permission denied`;
             terminal.appendChild(output);
         }
 
-        if (command === "sudo cd secret") {
+        else if (command === "sudo cd secret") {
             const output = document.createElement("div");
             output.innerHTML = `nice try`;
             terminal.appendChild(output);

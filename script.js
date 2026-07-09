@@ -205,25 +205,26 @@ ls - List files/folders in the current directory`);
                 return;
 
 
-                case "pwd":
+            case "pwd":
 
                 print(`/home/portfolio`);
+                break;
 
-                case "ls":
+            case "ls":
 
                 print(`calculator.sh  browser.sh  about.sh  terminal.sh  links.sh  secret`);
+                break;
 
-                case "cd secret":
+            case "cd secret":
 
                 print(`cd: /home/portfolio/secret: Permission denied`);
+                break;
 
-                case "sudo cd secret":
+            case "sudo cd secret":
 
                 print(`nice try (;`);
+                break;
 
-            break;
-
-            
 
             default:
 
