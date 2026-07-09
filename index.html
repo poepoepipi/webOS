@@ -82,6 +82,8 @@ about - Info about me
 pwd - Print the current directory
 ls - List files/folders in the current directory`;
             terminal.appendChild(output);
+            createPrompt();
+            return;
         }
 
         else if (command === "start") {
@@ -114,6 +116,8 @@ ls - List files/folders in the current directory`;
         Type <b>start</b> to enter the graphical version of the website.
         `;
             terminal.appendChild(output);
+            createPrompt();
+            return;
         }
 
         else if (command === "neofetch") {
@@ -131,36 +135,48 @@ ls - List files/folders in the current directory`;
         </pre>
         `;
             terminal.appendChild(output);
+            createPrompt();
+            return;
         }
 
         else if (command === "pwd") {
             const output = document.createElement("div");
             output.innerHTML = `/home/portfolio`;
             terminal.appendChild(output);
+            createPrompt();
+            return;
         }
 
         else if (command === "ls") {
             const output = document.createElement("div");
             output.innerHTML = `calculator.sh  browser.sh  about.sh  terminal.sh  links.sh  secret`;
             terminal.appendChild(output);
+            createPrompt();
+            return;
         }
 
         else if (command === "cd secret") {
             const output = document.createElement("div");
             output.innerHTML = `cd: /home/portfolio/secret: Permission denied`;
             terminal.appendChild(output);
+            createPrompt();
+            return;
         }
 
         else if (command === "sudo cd secret") {
             const output = document.createElement("div");
             output.innerHTML = `nice try`;
             terminal.appendChild(output);
+            createPrompt();
+            return;
         }
 
         else if (command !== "") {
             const output = document.createElement("div");
             output.textContent = `Unknown command: ${command}`;
             terminal.appendChild(output);
+            createPrompt();
+            return;
         }
 
         createPrompt();
