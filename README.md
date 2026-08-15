@@ -11,7 +11,7 @@ as well as some other stuff. I made it for Stardance by [HackClub](https://hack.
 - Projects browser
 
 ## How to use
-You can go to the webiste with [This Link](https://poepoepipi.github.io/webOS/)
+You can go to the website with [This Link](https://poepoepipi.github.io/webOS/)
 
 ## Statistics
 ![Time spent](https://hackatime.hackclub.com/api/v1/badge/U0A1VEB9U1F/poepoepipi/webOS)
